@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('seller_id')->constrained();
             $table->string('name', 255);
-            $table->string('description', 600);
+            $table->text('description');
             $table->float('price', 8, 2);
             $table->integer('stock')->unsigned();
             $table->timestamps();

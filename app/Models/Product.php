@@ -16,13 +16,7 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'seller_id',
     ];
-
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class);
-    }
 
     public function images()
     {
@@ -32,10 +26,5 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    public function orderDetails()
-    {
-        return $this->hasMany(OrderDetail::class);
     }
 }

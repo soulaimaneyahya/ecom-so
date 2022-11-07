@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('seller_id')->constrained();
             $table->string('name', 191);
             $table->string('description', 600);
             $table->timestamps();
