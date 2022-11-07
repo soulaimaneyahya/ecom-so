@@ -7,7 +7,14 @@
             <a class="c-sidebar-nav-link" href="/">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-copy') }}"></use>
-                </svg> <span>{{ __('Manage Users') }}</span>
+                </svg> <span>{{ __('Categories') }}</span>
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="/">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-cart') }}"></use>
+                </svg> <span>{{ __('Products') }}</span>
             </a>
         </li>
         <li class="c-sidebar-nav-item">
