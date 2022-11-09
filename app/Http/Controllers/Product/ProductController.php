@@ -1,13 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
+    public function __construct
+    (
+        private ProductService $productService,
+    )
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = $this->productService->all();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -25,7 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -36,7 +45,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $this->productService->store($request->validated());
+        return redirect()->route('products.index')->with('alert-success', 'Product Created !');
     }
 
     /**
@@ -47,7 +57,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -58,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -70,7 +80,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $this->productService->update($request->validated(), $product);
+        return redirect()->route('products.index')->with('alert-success', 'Product Updated !');
     }
 
     /**
@@ -81,6 +92,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with('alert-info', 'Product Deleted !');
     }
 }

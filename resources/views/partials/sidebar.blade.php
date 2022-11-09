@@ -4,14 +4,14 @@
     </div>
     <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="/">
+            <a class="c-sidebar-nav-link" href="{{ route('categories.index') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-copy') }}"></use>
                 </svg> <span>{{ __('Categories') }}</span>
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="/">
+            <a class="c-sidebar-nav-link" href="{{ route('products.index') }}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-cart') }}"></use>
                 </svg> <span>{{ __('Products') }}</span>

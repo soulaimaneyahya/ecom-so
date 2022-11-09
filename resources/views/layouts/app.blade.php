@@ -28,7 +28,7 @@
         <main class="c-main p-5 m-0">
             @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                 @if(Session::has('alert-' . $msg))
-                    @component('components.alert', ['msg' => $msg]) @endcomponent
+                    @alert(['msg' => $msg]) @endalert
                 @endif
             @endforeach
             @yield('content')
