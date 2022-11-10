@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->all();
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     /**

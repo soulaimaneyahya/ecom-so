@@ -53,7 +53,7 @@
             </thead>
             <tbody>
               @forelse ($products as $product)
-              @include('products.partials._product')
+              @include('admin.products.partials._product')
               @empty
               <tr>
                 <td class="text-center fw-bold" colspan="6">{{ __('No Product Found') }}</td>
