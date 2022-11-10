@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
-    public function __construct
-    (
+    public function __construct(
         private ProductRepository $productRepository,
         private Product $product,
-        private Image $image,
-    )
-    {
+        private Image $image
+    ) {
     }
     
     public function all()
@@ -32,7 +30,7 @@ class ProductService
     {
         $product = $this->product->create($data);
 
-        if(isset($data['images'])) {
+        if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
                 if ($image instanceof \Illuminate\Http\UploadedFile) {
                     $path = $image->store('products');
@@ -50,7 +48,7 @@ class ProductService
     {
         $product->update($data);
 
-        if(isset($data['images'])) {
+        if (isset($data['images'])) {
             if ($product->images) {
                 foreach ($product->images as $image) {
                     Storage::delete($image->path);

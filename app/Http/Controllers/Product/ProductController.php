@@ -11,10 +11,7 @@ use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
-    public function __construct
-    (
-        private ProductService $productService,
-    )
+    public function __construct(private ProductService $productService)
     {
     }
     /**
@@ -49,7 +46,7 @@ class ProductController extends Controller
         try {
             $this->productService->store($request->validated());
             return redirect()->route('products.index')->with('alert-success', 'Product Created !');
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             dd($ex->getMessage());
             return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
         }
@@ -89,7 +86,7 @@ class ProductController extends Controller
         try {
             $this->productService->update($request->validated(), $product);
             return redirect()->route('products.index')->with('alert-success', 'Product Updated !');
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             dd($ex->getMessage());
             return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
         }

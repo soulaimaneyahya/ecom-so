@@ -35,3 +35,17 @@ npm run dev
 ```
 php artisan migrate:fresh --seed
 ```
+
+## validate PHP-PSR2
+
+```
+./vendor/bin/phpcs app/Http/Controllers/Product/ProductController.php --standard=PSR2
+```
+
+```
+./vendor/bin/phpcs app/Services/ProductService.php --standard=PSR2
+```
+
+```
+./vendor/bin/phpcs app/Repositories/ProductRepository.php --standard=PSR2
+```

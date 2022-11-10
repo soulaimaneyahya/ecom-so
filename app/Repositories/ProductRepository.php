@@ -7,11 +7,9 @@ use App\Interfaces\ProductInterface;
 
 class ProductRepository implements ProductInterface
 {
-    public function __construct
-    (
+    public function __construct(
         private Product $product,
-    )
-    {    
+    ) {
     }
 
     public function all()
@@ -21,6 +19,7 @@ class ProductRepository implements ProductInterface
         $sort = request('sort_price');
 
         $products = $this->product
+        ->with(['images'])
         ->select(['id', 'name', 'price', 'stock', 'created_at']);
         if ($q) {
             $products = $products->where('name', 'like', '%'. $q .'%');
@@ -35,7 +34,7 @@ class ProductRepository implements ProductInterface
         ->appends([
             'per_page' => $per_page, // &per_page=10
             'q' => $q, // &q=lorem
-            'sort' => $sort, // &price_sort=desc
+            'sort_price' => $sort, // &price_sort=desc
         ]);
     }
 
