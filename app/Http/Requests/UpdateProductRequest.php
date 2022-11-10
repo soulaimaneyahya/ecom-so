@@ -25,9 +25,11 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => ['min:5', 'max:191'],
-            'description' => ['min:5','max:600'],
+            'description' => ['min:5'],
             'price' => ['min:1'],
             'stock' => ['min:1'],
+            'images' => ['max:1024'],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
         ];
     }
 }

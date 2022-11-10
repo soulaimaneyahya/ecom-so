@@ -17,7 +17,9 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->sentence($nbWords = 6),
+            'description' => fake()->paragraph($nbSentences = 3),
+            'created_at' => fake()->dateTimeBetween('-3 days')
         ];
     }
 }

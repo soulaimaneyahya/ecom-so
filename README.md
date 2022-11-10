@@ -29,3 +29,9 @@ npm install
 ```npm
 npm run dev
 ```
+
+## Generate Data
+
+```
+php artisan migrate:fresh --seed
+```

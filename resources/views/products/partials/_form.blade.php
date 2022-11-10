@@ -36,3 +36,14 @@
         </span>
     @enderror
 </div>
+
+<div class="mb-3">
+    <label for="images" class="form-label">Attache Images</label>
+    <input class="form-control @error('images') is-invalid @enderror" name="images[]" multiple="multiple"
+    accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="images" />
+    @error('images')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>

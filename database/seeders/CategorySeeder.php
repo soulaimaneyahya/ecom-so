@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -14,6 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $count = max((int)$this->command->ask("How many categories would you like ?", 10), 1);
+        $admin = Category::factory($count)->create();
     }
 }

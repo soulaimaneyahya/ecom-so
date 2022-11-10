@@ -38,4 +38,9 @@ class ProductRepository implements ProductInterface
             'sort' => $sort, // &price_sort=desc
         ]);
     }
+
+    public function find(Product $product)
+    {
+        return $product;
+    }
 }

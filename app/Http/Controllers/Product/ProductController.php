@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\Product;
 use App\Services\ProductService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -45,8 +46,13 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->productService->store($request->validated());
-        return redirect()->route('products.index')->with('alert-success', 'Product Created !');
+        try {
+            $this->productService->store($request->validated());
+            return redirect()->route('products.index')->with('alert-success', 'Product Created !');
+        } catch(Exception $ex) {
+            dd($ex->getMessage());
+            return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
+        }
     }
 
     /**
@@ -80,8 +86,13 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $this->productService->update($request->validated(), $product);
-        return redirect()->route('products.index')->with('alert-success', 'Product Updated !');
+        try {
+            $this->productService->update($request->validated(), $product);
+            return redirect()->route('products.index')->with('alert-success', 'Product Updated !');
+        } catch(Exception $ex) {
+            dd($ex->getMessage());
+            return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
+        }
     }
 
     /**
@@ -92,7 +103,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+        $this->productService->delete($product);
         return redirect()->route('products.index')->with('alert-info', 'Product Deleted !');
     }
 }

@@ -18,9 +18,10 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->sentence($nbWords = 6),
-            'description' => fake()->paragraph($nbSentences = 3),
+            'description' => fake()->paragraph($nbSentences = 20),
             'price' => fake()->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),
-            'stock' => fake()->randomDigitNotZero()
+            'stock' => fake()->randomDigitNotZero(),
+            'created_at' => fake()->dateTimeBetween('-3 days'),
         ];
     }
 }
