@@ -16,7 +16,7 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->is_admin) {
+        if (!auth()->user()->is_admin) {
             abort(403, '403 Unauthorized');
         }
         return $next($request);

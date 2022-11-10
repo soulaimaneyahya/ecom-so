@@ -5,7 +5,7 @@
     <div class="col-md-12">
        <div class="d-flex justify-content-between">
         <h4 class="fw-bold">{{ __('Products') }}</h4>
-        <a href="{{ route('products.create') }}" class="btn btn-dark btn-sm">{{ __('Create Product') }}</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-dark btn-sm">{{ __('Create Product') }}</a>
        </div>
 
       <div class="d-flex align-items-center justify-content-start my-3">
