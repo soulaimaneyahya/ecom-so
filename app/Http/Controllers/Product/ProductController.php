@@ -45,10 +45,10 @@ class ProductController extends Controller
     {
         try {
             $this->productService->store($request->validated());
-            return redirect()->route('products.index')->with('alert-success', 'Product Created !');
+            return redirect()->route('admin.products.index')->with('alert-success', 'Product Created !');
         } catch (Exception $ex) {
             dd($ex->getMessage());
-            return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
+            return redirect()->route('admin.products.index')->with('alert-danger', 'Something going wrong!');
         }
     }
 
@@ -85,10 +85,10 @@ class ProductController extends Controller
     {
         try {
             $this->productService->update($request->validated(), $product);
-            return redirect()->route('products.index')->with('alert-success', 'Product Updated !');
+            return redirect()->route('admin.products.index')->with('alert-success', 'Product Updated !');
         } catch (Exception $ex) {
             dd($ex->getMessage());
-            return redirect()->route('products.index')->with('alert-danger', 'Something going wrong!');
+            return redirect()->route('admin.products.index')->with('alert-danger', 'Something going wrong!');
         }
     }
 
@@ -101,6 +101,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->productService->delete($product);
-        return redirect()->route('products.index')->with('alert-info', 'Product Deleted !');
+        return redirect()->route('admin.products.index')->with('alert-info', 'Product Deleted !');
     }
 }

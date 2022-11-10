@@ -10,7 +10,7 @@
                  new !
                 @endbadge
             </div>
-            <a href="{{ route('products.index') }}" class="btn btn-dark btn-sm">{{ __('Back') }}</a>
+            <a href="{{ route('admin.products.index') }}" class="btn btn-dark btn-sm">{{ __('Back') }}</a>
         </div>
         <div class="d-flex align-items-start justify-content-between">
             <div class="col-md-8 ps-0">

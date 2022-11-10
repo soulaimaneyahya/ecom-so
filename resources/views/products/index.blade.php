@@ -33,7 +33,7 @@
           </select>
         </form>
         @if (request('q') || request('sort_price'))
-          <a class="btn btn-dark mx-2" href="{{ route('products.index') }}">
+          <a class="btn btn-dark mx-2" href="{{ route('admin.products.index') }}">
             Clear
           </a>
         @endif      
