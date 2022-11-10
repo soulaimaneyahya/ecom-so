@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4 pe-0">
                 @if ($product->images)
-                <img src="{{ $product->images[0]->url() ?? asset('assets/img/product-default.png') }}" style="width:500px; height:500px; object-fit: cover;" class="img-thumbnail" alt="{{ $product->name }}">
+                <img src="{{ $product->images[0]->url() ?? asset('assets/img/image-not-available.png') }}" style="width:500px; height:500px; object-fit: cover;" class="img-thumbnail" alt="{{ $product->name }}">
                 <div class="d-flex flex-wrap justify-content-start gap-3 my-3">
                     @foreach($product->images as $image)
                         <img src="{{ $image->url() }}" style="width:100px; height:110px; object-fit: cover;" class="img-fluid" alt="no-image">

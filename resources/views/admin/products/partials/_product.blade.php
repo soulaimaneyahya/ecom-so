@@ -1,6 +1,6 @@
 <tr>
     <td>
-        <img src="{{ count($product->images) ? $product->images[0]->url() : asset('assets/img/product-default.png') }}" style="width: 70px; height: 70px; object-fit: cover;" class="img-fluid" alt="{{ $product->name }}">
+        <img src="{{ count($product->images) ? $product->images[0]->url() : asset('assets/img/image-not-available.png') }}" style="width: 70px; height: 70px; object-fit: cover;" class="img-fluid" alt="{{ $product->name }}">
     </td>
     <td>
         {{ $product->name }}

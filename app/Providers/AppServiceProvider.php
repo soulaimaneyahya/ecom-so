@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Observers\CategoryObserver;
 use App\Observers\ProductObserver;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Pagination\Paginator;
@@ -42,5 +44,6 @@ class AppServiceProvider extends ServiceProvider
 
         // register observers
         Product::observe(ProductObserver::class);
+        Category::observe(CategoryObserver::class);
     }
 }
