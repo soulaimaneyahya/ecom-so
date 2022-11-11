@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+    // slug name for links (instead of id)
+    public function getRouteKeyName()
+{
+    return 'slug';
+}
 }

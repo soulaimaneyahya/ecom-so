@@ -19,11 +19,14 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 <body>
-
-    @auth @include('partials.sidebar') @endauth 
+    @auth
+        
+    @if (auth()->user()->is_admin)
+    @include('partials.sidebar')    
+    @endif
+    @endauth
     <div class="c-wrapper c-fixed-components">
         @include('partials.header')
         <main class="c-main p-5 m-0">

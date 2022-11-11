@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+    // slug name for links (instead of id)
+    public function getRouteKeyName()
+{
+    return 'slug';
+}
 }

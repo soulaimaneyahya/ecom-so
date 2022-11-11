@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Store\StoreProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,10 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::controller(StoreProductController::class)->prefix('store')->as('store.')->group(function () {
+   
+    Route::get('/','index')->name('index');
+    Route::get('/categories/{category}/products','shop')->name('shop');
+    Route::get('/shop','shop')->name('shop');
+
+});

@@ -36,6 +36,11 @@
                 <a href="/" class="c-header-nav-link">{{ env('APP_NAME') }}</a>
             </div>
             <ul class="c-header-nav ml-auto mr-5">
+                <li class="c-header-nav-item">
+                    <a class="c-header-nav-link" href="{{ route('store') }}">
+                        {{ __('Store') }}
+                    </a>
+                </li>
                 @if (Route::has('login'))
                     <li class="c-header-nav-item">
                         <a class="c-header-nav-link" href="{{ route('login') }}">
