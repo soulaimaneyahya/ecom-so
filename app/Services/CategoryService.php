@@ -29,8 +29,8 @@ class CategoryService
     public function store(array $data)
     {
         $category = $this->category->create($data);
-        if(isset($data['images']) && $data['images'] instanceof \Illuminate\Http\UploadedFile) {
-            $path = $data['images']->store('categories');
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            $path = $data['image']->store('categories');
             $category->image()->save(
                 $this->image->make(['path' => $path])
             );
@@ -41,8 +41,8 @@ class CategoryService
     public function update(array $data, Category $category)
     {
         $category->update($data);
-        if(isset($data['images']) && $data['images'] instanceof \Illuminate\Http\UploadedFile) {
-            $path = $data['images']->store('categories');
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            $path = $data['image']->store('categories');
             if ($category->image) {
                 Storage::delete($category->image->path);
                 $category->image->path = $path;

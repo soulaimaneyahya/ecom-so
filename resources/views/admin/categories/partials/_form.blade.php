@@ -18,4 +18,15 @@
     @enderror
 </div>
 
-@livewire('upload-images-component')
+<div class="card p-3">
+    <label for="image" class="form-label">Attache Image</label>
+    <input class="form-control @error('image') is-invalid @enderror" 
+    name="image" wire:model="image"
+    accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="image" />
+    @error('image')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+

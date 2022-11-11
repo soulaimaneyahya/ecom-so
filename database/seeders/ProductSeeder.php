@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,19 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $count = max((int)$this->command->ask("How many products would you like ?",10), 1);
-        $admin = Product::factory($count)->create();
+        $count = max((int)$this->command->ask("How many products would you like ?", 20), 1);
+        $products = Product::factory($count)->create();
+
+        $products->each(function($product) {
+            $paths = collect(['factory/products/1.jpg', 'factory/products/2.jpg', 'factory/products/3.jpg', 'factory/products/4.jpg', 'factory/products/5.jpg'])->random(rand(1,5));
+
+            foreach ($paths as $path) {
+                $product->images()->save(
+                    Image::make([
+                        'path' => $path,
+                    ])
+                );   
+            }
+        });
     }
 }

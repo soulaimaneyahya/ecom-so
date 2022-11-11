@@ -8,6 +8,7 @@
         new !
         @endbadge
     </td>
+    <td>{{ $category->products_count }}</td>
     <td>{{ $category->created_at->diffForHumans() }}</td>
     <td align="right">
         <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-sm btn-dark" title="view">

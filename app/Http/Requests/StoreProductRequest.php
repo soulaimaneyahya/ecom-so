@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
             'stock' => ['required', 'min:1'],
             'images' => ['required'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
+            'category' => [],
         ];
     }
 }

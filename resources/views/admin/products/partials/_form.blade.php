@@ -37,4 +37,17 @@
     @enderror
 </div>
 
+<div class="mb-3">
+    <label for="category">{{ __('Category') }}</label>
+    <select class="form-control" name="category" id="category">
+        <option selected>Choose Category</option>
+        @foreach ($categories as $category)
+          <option 
+          {{ old('category') == $category ? "selected" : "" }}
+          {{ isset($product) && $product->categories->contains($category->id) ? "selected" : "" }}
+          value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 @livewire('upload-images-component')

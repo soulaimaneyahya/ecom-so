@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Product;
 use App\Models\Image;
+use App\Models\Product;
+use App\Models\Category;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,6 +13,7 @@ class ProductService
     public function __construct(
         private ProductRepository $productRepository,
         private Product $product,
+        private Category $category,
         private Image $image
     ) {
     }
@@ -41,6 +43,11 @@ class ProductService
             }
         }
 
+        if (isset($data['category'])) {
+            $category = $this->category->find($data['category']);
+            $product->categories()->attach($category);
+        }
+
         return $product;
     }
 
@@ -62,6 +69,14 @@ class ProductService
                         $this->image->make(['path' => $path])
                     );
                 }
+            }
+        }
+
+        if (isset($data['category'])) {
+            $category = $this->category->find($data['category']);
+            if ($category) {
+                $product->categories()->sync([]);
+                $product->categories()->attach($category);
             }
         }
 

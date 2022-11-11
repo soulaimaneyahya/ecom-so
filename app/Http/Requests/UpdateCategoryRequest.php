@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name' => ['min:5', 'max:191'],
             'description' => ['min:5','max:600'],
-            'images' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
+            'image' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
         ];
     }
 }

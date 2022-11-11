@@ -10,7 +10,7 @@
         <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            @include('products.partials._form')
+            @include('admin.products.partials._form')
             <button type="submit" class="btn btn-sm btn-dark">
                 {{ __('Update') }}
             </button>

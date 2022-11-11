@@ -49,3 +49,8 @@ php artisan migrate:fresh --seed
 ```
 ./vendor/bin/phpcs app/Repositories/ProductRepository.php --standard=PSR2
 ```
+
+## Attach product to category
+
+$product->categories()->attach($category1);
+$product->categories()->detach($category1);

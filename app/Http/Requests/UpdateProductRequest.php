@@ -30,6 +30,7 @@ class UpdateProductRequest extends FormRequest
             'stock' => ['min:1'],
             'images' => ['max:1024'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
+            'category' => [],
         ];
     }
 }

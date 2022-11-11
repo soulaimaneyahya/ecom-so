@@ -14,6 +14,13 @@
         </div>
         <div class="d-flex align-items-start justify-content-between">
             <div class="col-md-8 ps-0">
+                <div class="mb-3">
+                    @foreach ($product->categories as $item)
+                    @badge(['type' => 'dark', 'show' => TRUE])
+                    {{ $item->name }}
+                    @endbadge
+                    @endforeach
+                </div>
                 <p>{!! $product->description !!}</p>
                 <p class="mt-4 text-muted">Added {{ $product->created_at->diffForHumans(); }}</p>
             </div>

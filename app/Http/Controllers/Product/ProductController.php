@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use Exception;
 use App\Models\Product;
+use App\Models\Category;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
@@ -11,8 +12,11 @@ use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
+    public $categories;
+
     public function __construct(private ProductService $productService)
     {
+        $this->categories = Category::select(['id', 'name'])->get();
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +36,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = $this->categories;
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -71,7 +76,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $categories = $this->categories;
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
