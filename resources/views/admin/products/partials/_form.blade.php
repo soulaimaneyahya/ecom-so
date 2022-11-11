@@ -1,10 +1,21 @@
 <div class="mb-3">
     <label for="name">{{ __('Name') }}</label>
-    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $product->name ?? '') }}" placeholder="Product Name (Exp: T-shirt Black) .." required autocomplete="name" autofocus>
+    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" maxlength="191" value="{{ old('name', $product->name ?? '') }}" placeholder="Product Name (Exp: T-shirt Black) .." required autocomplete="name" autofocus>
     @error('name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
+    @enderror
+</div>
+
+<div class="mb-3 form-group">
+    <div class="form-control d-flex align-items-center justify-content-start">
+        <span class="me-3">http://127.0.0.1:8000/store/products/</span>
+        <input type="text" name="slug" id="slug" maxlength="191" class="form-control w-75 @error('slug') is-invalid  @enderror" 
+        value="{{ old('slug', $product->slug ?? '') }}" placeholder="Slug .." required>
+    </div>
+    @error('slug')
+        <p class="text-danger fw-bold">{{ $message }}</p>
     @enderror
 </div>
 

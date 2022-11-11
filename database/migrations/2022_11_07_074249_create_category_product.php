@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignUuid('category_id')->constrained();
             $table->foreignUuid('product_id')->constrained();
             $table->timestamps();
+
+            $table->unique(['category_id', 'product_id']);
         });
     }
 
