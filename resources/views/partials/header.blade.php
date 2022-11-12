@@ -37,7 +37,7 @@
             </div>
             <ul class="c-header-nav ml-auto mr-5">
                 <li class="c-header-nav-item">
-                    <a class="c-header-nav-link" href="{{ route('store') }}">
+                    <a class="c-header-nav-link" href="{{ route('store.index') }}">
                         {{ __('Store') }}
                     </a>
                 </li>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $name = fake()->sentence($nbWords = 6);
         return [
-            'name' => fake()->sentence($nbWords = 6),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'description' => fake()->paragraph($nbSentences = 20),
             'price' => fake()->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),
             'stock' => fake()->randomDigitNotZero(),

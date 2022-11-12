@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $name = fake()->sentence($nbWords = 6);
+
         return [
-            'name' => fake()->sentence($nbWords = 6),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'description' => fake()->paragraph($nbSentences = 3),
             'created_at' => fake()->dateTimeBetween('-3 days')
         ];
