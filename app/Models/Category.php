@@ -27,7 +27,7 @@ class Category extends Model
     }
     // slug name for links (instead of id)
     public function getRouteKeyName()
-{
-    return 'slug';
-}
+    {
+        return 'slug';
+    }
 }
