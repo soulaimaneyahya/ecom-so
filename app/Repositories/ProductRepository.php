@@ -20,7 +20,7 @@ class ProductRepository implements ProductInterface
 
         $products = $this->product
         ->with(['images'])
-        ->select(['id', 'name', 'price', 'stock', 'created_at']);
+        ->select(['id', 'name', 'price', 'slug', 'stock', 'created_at']);
         if ($q) {
             $products = $products->where('name', 'like', '%'. $q .'%');
         }

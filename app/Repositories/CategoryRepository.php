@@ -20,8 +20,9 @@ class CategoryRepository implements CategoryInterface
 
         $categories = $this->category
         ->with(['image'])
-        ->select(['id', 'name', 'created_at'])
+        ->select(['id', 'name', 'slug', 'created_at'])
         ->withCount('products');
+        
         if ($q) {
             $categories = $categories->where('name', 'like', '%'. $q .'%');
         }

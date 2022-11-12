@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -26,6 +27,15 @@ class Category extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    // local scope, commun between store & admin
+    public function scopeLatestWithRelations(Builder $builder)
+    {
+        return $builder->with(['image'])
+            ->select(['id', 'name', 'slug', 'created_at'])
+            ->withCount('products');
+    }
+
     // slug name for links (instead of id)
     public function getRouteKeyName()
     {
