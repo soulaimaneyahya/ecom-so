@@ -11,8 +11,11 @@ use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
+    public $parent_categories;
+
     public function __construct(private CategoryService $categoryService)
     {
+        $this->parent_categories = Category::select(['id', 'name'])->whereNull('parent_category_id')->get();
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +25,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->all();
-        return view('admin.categories.index', compact('categories'));
+        $categories_count = $this->categoryService->count();
+        return view('admin.categories.index', compact('categories', 'categories_count'));
     }
 
     /**
@@ -32,7 +36,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $parent_categories = $this->categoryService->parent_categories();
+        return view('admin.categories.create', compact('parent_categories'));
     }
 
     /**
@@ -71,7 +76,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        $parent_categories = $this->categoryService->parent_categories();
+        return view('admin.categories.edit', compact('category', 'parent_categories'));
     }
 
     /**
@@ -85,7 +91,7 @@ class CategoryController extends Controller
     {
         try {
             $this->categoryService->update($request->validated(), $category);
-            return redirect()->route('admin.categories.index')->with('alert-success', 'Category Updated !');
+            return redirect()->route('admin.categories.index')->with('alert-success', 'Category Updated!');
         } catch (Exception $ex) {
             dd($ex->getMessage());
             return redirect()->route('admin.categories.index')->with('alert-danger', 'Something going wrong!');

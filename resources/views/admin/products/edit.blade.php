@@ -11,9 +11,8 @@
             @csrf
             @method('PUT')
             @include('admin.products.partials._form')
-            <button type="submit" class="btn btn-sm btn-dark">
-                {{ __('Update') }}
-            </button>
+            @footer(['text' => 'Update'])
+            @endfooter
         </form>
     </div>
 </div>

@@ -31,11 +31,15 @@
     <div class="c-wrapper c-fixed-components">
         @include('partials.header')
         <main class="c-main p-5 m-0">
-            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                @if(Session::has('alert-' . $msg))
-                    @alert(['msg' => $msg]) @endalert
-                @endif
-            @endforeach
+            <div class="row justify-content-center">
+                <div class="col-md-12 px-0">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if(Session::has('alert-' . $msg))
+                            @alert(['msg' => $msg]) @endalert
+                        @endif
+                    @endforeach
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>

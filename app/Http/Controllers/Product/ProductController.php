@@ -26,7 +26,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->all();
-        return view('admin.products.index', compact('products'));
+        $products_count = $this->productService->count();
+        return view('admin.products.index', compact('products', 'products_count'));
     }
 
     /**

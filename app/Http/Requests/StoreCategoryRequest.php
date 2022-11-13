@@ -28,6 +28,7 @@ class StoreCategoryRequest extends FormRequest
             'slug' => ['required', 'min:5', 'max:192', 'unique:products'],
             'description' => ['required', 'min:5','max:600'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
+            'parent_category' => [],
         ];
     }
 }

@@ -16,7 +16,29 @@ class Category extends Model
         'name',
         'description',
         'slug',
+        'parent_category_id'
     ];
+
+    /**
+     * Get parent category
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_category_id');
+    }
+
+    /**
+     * Get subcategories category
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subcategories()
+    {
+        return $this->hasMany(Category::class, 'parent_category_id');
+    }
+
 
     public function products()
     {

@@ -18,13 +18,11 @@
     <div class="row">
         <div class="col-md-12">
             @if ($images)
-                <div class="card p-3">
-                    <div class="d-flex flex-wrap justify-content-start gap-3">
-                        @foreach($images as $image)
-                            <img src="{{ $image->temporaryUrl() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
-                        @endforeach
-                    </div>
-                </div>
+                @images(['title' => 'Preview images'])
+                @foreach($images as $image)
+                    <img src="{{ $image->temporaryUrl() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
+                @endforeach
+                @endimages
             @endif
         </div>
     </div>

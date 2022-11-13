@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,6 +29,11 @@ class ProductService
         return $this->productRepository->find($product);
     }
 
+    public function count()
+    {
+        return $this->productRepository->count();
+    }
+
     public function store(array $data)
     {
         $product = $this->product->create($data);
@@ -45,7 +51,9 @@ class ProductService
 
         if (isset($data['category'])) {
             $category = $this->category->find($data['category']);
-            $product->categories()->attach($category);
+            if ($category) {
+                $product->categories()->attach($category);
+            }
         }
 
         return $product;
@@ -53,8 +61,6 @@ class ProductService
 
     public function update(array $data, Product $product)
     {
-        $product->update($data);
-
         if (isset($data['images'])) {
             if ($product->images) {
                 foreach ($product->images as $image) {
@@ -72,13 +78,21 @@ class ProductService
             }
         }
 
-        if (isset($data['category'])) {
+        if (isset($data['category']) && !empty($data['category'])) {
             $category = $this->category->find($data['category']);
             if ($category) {
                 $product->categories()->sync([]);
                 $product->categories()->attach($category);
             }
+        } else {
+            $product->categories()->sync([]);
         }
+
+        if ($product->isClean()) {
+            // return redirect()->back()->with('alert-info', 'You need to specify a different value to update');
+        }
+
+        $product->update($data);
 
         return $product;
     }

@@ -26,6 +26,16 @@ class CategoryService
         return $this->categoryRepository->find($category);
     }
 
+    public function parent_categories()
+    {
+        return $this->categoryRepository->parent_categories();
+    }
+
+    public function count()
+    {
+        return $this->categoryRepository->count();
+    }
+
     public function store(array $data)
     {
         $category = $this->category->create($data);
@@ -35,12 +45,19 @@ class CategoryService
                 $this->image->make(['path' => $path])
             );
         }
+
+        if (isset($data['parent_category'])) {
+            $parent_category = $this->category->find($data['parent_category']);
+            if ($parent_category) {
+                $category->parent()->associate($parent_category)->save();
+            }
+        }
+
         return $category;
     }
 
     public function update(array $data, Category $category)
     {
-        $category->update($data);
         if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
             $path = $data['image']->store('categories');
             if ($category->image) {
@@ -53,6 +70,24 @@ class CategoryService
                 );
             }
         }
+
+        if (isset($data['parent_category']) && !empty($data['parent_category']) && !is_null($category->parent_category_id)) {
+            $parent_category = $this->category->find($data['parent_category']);
+            if ($parent_category) {
+                $category->parent_category_id = $parent_category->id;
+                $category->save();
+            }
+        } else {
+            $category->parent_category_id = null;
+            $category->save();
+        }
+        
+        if (!$category->isDirty()) {
+            // return redirect()->back()->with('alert-info', 'You need to specify a different value to update');
+        }
+
+        $category->update($data);
+
         return $category;
     }
 

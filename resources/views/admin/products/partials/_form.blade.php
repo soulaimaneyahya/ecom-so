@@ -49,9 +49,9 @@
 </div>
 
 <div class="mb-3">
-    <label for="category">{{ __('Category') }}</label>
+    <label for="category">{{ __('Choose Category') }}</label>
     <select class="form-control" name="category" id="category">
-        <option selected>Choose Category</option>
+        <option value="" selected>Havn't Category</option>
         @foreach ($categories as $category)
           <option 
           {{ old('category') == $category ? "selected" : "" }}
@@ -60,5 +60,14 @@
         @endforeach
     </select>
 </div>
+
+
+@isset($product)
+@images(['title' => 'Product images'])
+@foreach($product->images as $image)
+    <img src="{{ $image->url() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
+@endforeach
+@endimages
+@endisset
 
 @livewire('upload-images-component')

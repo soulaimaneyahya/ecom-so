@@ -49,6 +49,19 @@ php artisan migrate:fresh --seed
 ```
 ./vendor/bin/phpcs app/Repositories/ProductRepository.php --standard=PSR2
 ```
+---
+
+```
+./vendor/bin/phpcs app/Http/Controllers/Category/CategoryController.php --standard=PSR2
+```
+
+```
+./vendor/bin/phpcs app/Services/CategoryService.php --standard=PSR2
+```
+
+```
+./vendor/bin/phpcs app/Repositories/CategoryRepository.php --standard=PSR2
+```
 
 ## Attach product to category
 

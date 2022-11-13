@@ -5,7 +5,10 @@
     <div class="col-md-12">
         <div class="d-flex justify-content-between mb-4">
             <div class="d-flex align-items-start">
-                <h4 class="fw-bold">{{ $category->name }}</h4>
+                <h4 class="fw-bold">
+                    @if ($category->parent) {{ $category->parent->name }} / @endif
+                    {{ $category->name }}
+                </h4>
                 @badge(['type' => 'danger', 'show' => now()->diffInMinutes($category->created_at) < 5])
                  new !
                 @endbadge

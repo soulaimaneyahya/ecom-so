@@ -10,9 +10,8 @@
         <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @include('admin.categories.partials._form')
-            <button type="submit" class="btn btn-sm btn-dark">
-                {{ __('Save') }}
-            </button>
+            @footer(['text' => 'Save'])
+            @endfooter
         </form>
     </div>
 </div>

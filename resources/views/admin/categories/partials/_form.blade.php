@@ -30,6 +30,21 @@
     @enderror
 </div>
 
+@if (!isset($category) || (isset($category) && !is_null($category->parent_category_id)))
+<div class="mb-3">
+    <label for="parent_category">{{ __('Choose Parent Category') }}</label>
+    <select class="form-control" name="parent_category" id="parent_category">
+        <option value="" selected>Havn't Parent Category</option>
+        @foreach ($parent_categories as $item)
+          <option 
+          {{ old('category') == $item ? "selected" : "" }}
+          {{ isset($category) && $category->parent_category_id == $item->id ? "selected" : "" }}
+          value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
+    </select>
+</div>
+@endif
+
 <div class="card p-3">
     <label for="image" class="form-label">Attache Image</label>
     <input class="form-control @error('image') is-invalid @enderror" 
@@ -41,3 +56,9 @@
         </span>
     @enderror
 </div>
+
+@isset($category)
+@images(['title' => 'Category image'])
+<img src="{{ $category->image->url() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
+@endimages
+@endisset

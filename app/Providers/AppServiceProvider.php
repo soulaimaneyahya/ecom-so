@@ -41,6 +41,9 @@ class AppServiceProvider extends ServiceProvider
         // register blade components
         Blade::aliasComponent('components.alert', 'alert');
         Blade::aliasComponent('components.badge', 'badge');
+        Blade::aliasComponent('components.sorted', 'sorted');
+        Blade::aliasComponent('components.images', 'images');
+        Blade::aliasComponent('components.footer', 'footer');
 
         // register observers
         Product::observe(ProductObserver::class);

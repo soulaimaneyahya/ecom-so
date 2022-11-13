@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function(Blueprint $table) {
-            $table->string('slug')->unique()->after('name');
+            $table->string('slug')->nullable()->unique()->after('name');
         });
         Schema::table('categories', function(Blueprint $table) {
-            $table->string('slug')->unique()->after('name');
+            $table->string('slug')->nullable()->unique()->after('name');
         });
     }
 

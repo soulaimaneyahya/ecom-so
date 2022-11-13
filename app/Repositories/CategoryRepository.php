@@ -19,7 +19,8 @@ class CategoryRepository implements CategoryInterface
         $sort = request('sort');
 
         $categories = $this->category
-        ->with(['image'])
+        ->with(['image', 'subcategories', 'subcategories.image'])
+        ->whereNull('parent_category_id')
         ->select(['id', 'name', 'slug', 'created_at'])
         ->withCount('products');
         
@@ -43,5 +44,15 @@ class CategoryRepository implements CategoryInterface
     public function find(Category $category)
     {
         return $category;
+    }
+
+    public function count()
+    {
+        return Category::whereNull('parent_category_id')->get(['id'])->count();
+    }
+
+    public function parent_categories()
+    {
+        return Category::whereNull('parent_category_id')->get(['id', 'name']);
     }
 }

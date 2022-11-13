@@ -6,3 +6,27 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// tables
+.column-sm {
+    width: 3%;
+}
+.column-md {
+    width: 8%;
+}
+.column-lg {
+    width: 10%;
+}
+.column-xl {
+    width: 45%;
+}
+// footer
+.page-footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.23);
+    border-top: 1px solid rgba(0, 0, 0, 0.1176470588);
+}
