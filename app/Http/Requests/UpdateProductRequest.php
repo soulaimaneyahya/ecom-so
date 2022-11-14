@@ -30,6 +30,7 @@ class UpdateProductRequest extends FormRequest
                 Rule::unique('products')->ignore($this->product->id)
             ],
             'description' => ['required', 'min:5'],
+            'price_before' => ['min:1'],
             'price' => ['required', 'min:1'],
             'stock' => ['required', 'min:1'],
             'images' => ['max:1024'],

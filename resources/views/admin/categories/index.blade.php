@@ -4,13 +4,13 @@
 <div class="row justify-content-center">
   <div class="col-md-12 px-0 mb-3">
     <div class="d-flex justify-content-between">
-      <h4 class="fw-bold">{{ __('Categories') }} <span class="text-primary">({{ $categories_count }})</span></h4>
+      <h4 class="fw-bold">{{ __('Categories') }} <span class="text-primary">({{ $categoriesCount }})</span></h4>
     </div>
   </div>
     <div class="card col-md-12">
       <div class="d-flex align-items-center justify-content-start my-3">
         <form class="d-flex form-inline w-100 my-lg-0" method="GET">
-          <input class="form-control w-75 me-2" type="search" name="q" placeholder="Search .." @if(request('q')) value="{{ request('q') }}" @endif aria-label="Search">
+          <input class="form-control w-75 me-2" type="search" name="q" placeholder="Search for categories .." @if(request('q')) value="{{ request('q') }}" @endif aria-label="Search">
           <button class="btn btn-dark" type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

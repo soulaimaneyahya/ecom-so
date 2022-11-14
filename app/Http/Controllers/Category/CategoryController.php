@@ -25,8 +25,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->all();
-        $categories_count = $this->categoryService->count();
-        return view('admin.categories.index', compact('categories', 'categories_count'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**

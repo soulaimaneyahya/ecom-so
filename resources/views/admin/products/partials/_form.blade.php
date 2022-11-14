@@ -28,14 +28,25 @@
         </span>
     @enderror
 </div>
-<div class="mb-3">
-    <label for="price">{{ __('Price') }}</label>
-    <input id="price" type="number" min="1" step=".01" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="Price" required autocomplete="price" autofocus>
-    @error('price')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
+<div class="d-flex mb-3">
+    <div class="me-4">
+        <label for="price_before">{{ __('Price Before') }}</label>
+        <input id="price_before" type="number" min="1" step=".01" class="form-control @error('price_before') is-invalid @enderror" name="price_before" value="{{ old('price_before', $product->price_before ?? '') }}" placeholder="Price Before" required autocomplete="price_before" autofocus>
+        @error('price_before')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div>
+        <label for="price">{{ __('Price') }}</label>
+        <input id="price" type="number" min="1" step=".01" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price', $product->price ?? '') }}" placeholder="Price" required autocomplete="price" autofocus>
+        @error('price')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
 </div>
 
 <div class="mb-3">

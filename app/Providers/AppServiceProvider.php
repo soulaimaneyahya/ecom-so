@@ -2,15 +2,17 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
+use App\Http\View\Composers\CountComposer;
 use App\Models\Product;
-use App\Observers\CategoryObserver;
+use App\Models\Category;
 use App\Observers\ProductObserver;
-use Illuminate\Support\Facades\Blade;
+use App\Observers\CategoryObserver;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // pagination
         Paginator::useBootstrap();
+
+        // view composer, pass data to views globally
+        View::composer('*', CountComposer::class);
 
         // schema length default & use uuid as default mophid
         Schema::defaultStringLength(191);

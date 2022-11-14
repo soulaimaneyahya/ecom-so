@@ -4,13 +4,13 @@
 <div class="row justify-content-center">
     <div class="col-md-12 px-0 mb-3">
       <div class="d-flex justify-content-between">
-        <h4 class="fw-bold">{{ __('Products') }} <span class="text-primary">({{ $productsCount }})</span></h4>
+        <h4 class="fw-bold">{{ __('Orders') }} <span class="text-primary">({{ $ordersCount }})</span></h4>
       </div>
     </div>
     <div class="card col-md-12">
       <div class="d-flex align-items-center justify-content-start my-3">
         <form class="d-flex form-inline w-100 my-lg-0" method="GET">
-          <input class="form-control w-75 me-2" type="search" name="q" placeholder="Search for products .." @if(request('q')) value="{{ request('q') }}" @endif aria-label="Search">
+          <input class="form-control w-75 me-2" type="search" name="q" placeholder="Search for orders .." @if(request('q')) value="{{ request('q') }}" @endif aria-label="Search">
           <button class="btn btn-dark" type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -25,20 +25,13 @@
           <option value="20" @if(request('per_page') == 20) selected @endif>20</option>
         @endsorted
 
-        @sorted(['name' => 'sort', 'timestamp' => TRUE])
-          <option selected>Sort</option>
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Product Title A-Z</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Product Title Z-A</option>
-
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Price (Highest)</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Price (Lowest)</option>
-
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Stock (Highest)</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Stock (Lowest)</option>
+        @sorted(['name' => 'status'])
+          <option selected>Status</option>
+          <option value="asc" @if(request('status') == 'all') selected @endif>All</option>
         @endsorted
 
-        @if (request('q') || request('sort_price'))
-          <a class="btn btn-dark mx-2" href="{{ route('admin.products.index') }}">
+        @if (request('q') || request('status'))
+          <a class="btn btn-dark mx-2" href="{{ route('admin.orders.index') }}">
             Clear
           </a>
         @endif
@@ -49,24 +42,21 @@
             <thead>
               <tr class="fw-bold">
                 <th scope="col"></th>
-                <th scope="col">{{ __('Name') }}</th>
-                <th scope="col">{{ __('Price') }}</th>
-                <th scope="col">{{ __('Stock') }}</th>
-                <th scope="col">{{ __('Created') }}</th>
+                <th scope="col">{{ __('Product') }}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              @forelse ($products as $product)
-              @include('admin.products.partials._product')
+              @forelse ($orders as $order)
+              
               @empty
               <tr>
-                <td colspan="6">
+                <td colspan="8">
                   <h3> <img src="{{asset('assets/img/svg/void.svg')}}" class="my-4 mx-auto d-block" width="250" alt=""> </h3>
-                  <h4 class="text-center fw-bold text-secondary">Add and manage your products</h4>
-                  <p class="text-center fw-bold text-secondary">This is where you’ll add products and manage your pricing</p>
+                  <h4 class="text-center fw-bold text-secondary">Add and manage your orders</h4>
+                  <p class="text-center fw-bold text-secondary">This is where you’ll add orders and manage your pricing</p>
                   <div class="my-2 d-flex justify-content-center">
-                    <a href="{{ route('admin.products.create') }}" class="btn btn-dark">{{ __('Add a Product') }}</a>
+                    <a href="{{ route('admin.orders.create') }}" class="btn btn-dark">{{ __('Add a order') }}</a>
                   </div>
                 </td>
               </tr>
@@ -74,14 +64,14 @@
             </tbody>
           </table>
           <div class="mt-2">
-            {{ $products->links() }}
+            {{ $orders->links() }}
           </div>
        </div>
     </div>
 </div>
 
-@if($products->count())
-@footer(['text' => 'Add a Product', 'route' => route('admin.products.create')])
+@if($orders->count())
+@footer(['text' => 'Add a order', 'route' => route('admin.orders.create')])
 @endfooter
 @endif
 @endsection

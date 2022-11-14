@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->index()->primary();
             $table->string('name', 255);
             $table->text('description');
+            $table->float('price_before', 8, 2)->nullable();
             $table->float('price', 8, 2);
             $table->integer('stock')->unsigned();
             $table->timestamps();
