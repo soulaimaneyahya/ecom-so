@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -18,6 +19,7 @@ class ProductController extends Controller
     {
         $this->categories = Category::select(['id', 'name'])->get();
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +28,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->all();
-        return view('admin.products.index', compact('products'));
+        $products_count = Cache::remember('products-count', 100, function(){
+            return $this->productService->count();
+        });
+        return view('admin.products.index', compact('products', 'products_count'));
     }
 
     /**
@@ -36,8 +41,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = $this->categories;
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', [
+            'categories' => $this->categories,
+        ]);
     }
 
     /**

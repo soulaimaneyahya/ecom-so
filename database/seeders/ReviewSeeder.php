@@ -14,7 +14,7 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        $count = max((int)$this->command->ask("How many reviews would you like ?", 4), 1);
+        $count = max((int)$this->command->ask("How many reviews would you like ?", 30), 1);
         $reviews = Review::factory($count)->create();
     }
 }

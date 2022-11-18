@@ -25,7 +25,7 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'min:5', 'max:191'],
+            'name' => ['bail', 'required', 'min:5', 'max:191'],
             'slug' => ['required', 'min:5', 'max:192',
                 Rule::unique('products')->ignore($this->product->id)
             ],

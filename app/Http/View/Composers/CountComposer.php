@@ -7,6 +7,7 @@ use App\Services\OrderService;
 use App\Services\ReviewService;
 use App\Services\ProductService;
 use App\Services\CategoryService;
+use Illuminate\Support\Facades\Cache;
 
 class CountComposer
 {
@@ -20,16 +21,9 @@ class CountComposer
     
     public function compose(View $view)
     {
-        $ordersCount = $this->orderService->count();
+        $ordersCount = Cache::remember('orders-count', 100, function(){
+            return $this->orderService->count();
+        });
         $view->with('ordersCount', $ordersCount);
-
-        $productsCount = $this->productService->count();
-        $view->with('productsCount', $productsCount);
-
-        $reviewsCount = $this->reviewService->count();
-        $view->with('reviewsCount', $reviewsCount);
-
-        $categoriesCount = $this->categoryService->count();
-        $view->with('categoriesCount', $categoriesCount);
     }
 }

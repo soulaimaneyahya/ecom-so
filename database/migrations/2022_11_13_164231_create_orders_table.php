@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('product_id')->constrained();
+            $table->uuid('id')->index()->primary();
+            $table->foreignUuid('product_id')->index()->constrained();
             $table->timestamps();
         });
     }

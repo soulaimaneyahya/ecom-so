@@ -48,11 +48,11 @@ class CategoryRepository implements CategoryInterface
 
     public function count()
     {
-        return Category::whereNull('parent_category_id')->get(['id'])->count();
+        return $this->category->whereNull('parent_category_id')->get(['id'])->count();
     }
 
     public function parent_categories()
     {
-        return Category::whereNull('parent_category_id')->get(['id', 'name']);
+        return $this->category->whereNull('parent_category_id')->get(['id', 'name']);
     }
 }

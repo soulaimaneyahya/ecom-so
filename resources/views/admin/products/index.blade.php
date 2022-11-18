@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12 px-0 mb-3">
       <div class="d-flex justify-content-between">
-        <h4 class="fw-bold">{{ __('Products') }} <span class="text-primary">({{ $productsCount }})</span></h4>
+        <h4 class="fw-bold">{{ __('Products') }} <span class="text-primary">({{ $products_count }})</span></h4>
       </div>
     </div>
     <div class="card col-md-12">

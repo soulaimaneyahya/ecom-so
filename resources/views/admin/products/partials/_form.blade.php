@@ -62,7 +62,7 @@
 <div class="mb-3">
     <label for="category">{{ __('Choose Category') }}</label>
     <select class="form-control" name="category" id="category">
-        <option value="" selected>Havn't Category</option>
+        <option value disabled {{ old('category', null) === null ? 'selected' : '' }}>Havn't Category</option>
         @foreach ($categories as $category)
           <option 
           {{ old('category') == $category ? "selected" : "" }}

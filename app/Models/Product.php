@@ -29,6 +29,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+    
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     // slug name for links (instead of id)
     public function getRouteKeyName()
     {

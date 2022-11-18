@@ -44,8 +44,6 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->renderable(function (NotFoundHttpException $e) {
-            return abort(404);
-        });
+        //
     }
 }

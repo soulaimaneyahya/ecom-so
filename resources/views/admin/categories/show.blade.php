@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="d-flex justify-content-between mb-4">
             <div class="d-flex align-items-start">
-                <h4 class="fw-bold">
+                <h4 class="fw-bold me-3">
                     @if ($category->parent) {{ $category->parent->name }} / @endif
                     {{ $category->name }}
                 </h4>

@@ -22,7 +22,7 @@
 
 <div class="mb-3">
     <label for="description">{{ __('Description') }}</label>
-    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description Description .." autocomplete="description" required autofocus>{{ old('description', $category->description ?? '') }}</textarea>
+    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description Description .." autocomplete="description" maxlength="600" required autofocus>{{ old('description', $category->description ?? '') }}</textarea>
     @error('description')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@
 <div class="mb-3">
     <label for="parent_category">{{ __('Choose Parent Category') }}</label>
     <select class="form-control" name="parent_category" id="parent_category">
-        <option value="" selected>Havn't Parent Category</option>
+        <option value disabled {{ old('parent_category', null) === null ? 'selected' : '' }}>Havn't Parent Category</option>
         @foreach ($parent_categories as $item)
           <option 
           {{ old('category') == $item ? "selected" : "" }}
@@ -49,7 +49,7 @@
     <label for="image" class="form-label">Attache Image</label>
     <input class="form-control @error('image') is-invalid @enderror" 
     name="image" wire:model="image"
-    accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="image" />
+    accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="image" required/>
     @error('image')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

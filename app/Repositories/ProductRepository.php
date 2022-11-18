@@ -45,6 +45,6 @@ class ProductRepository implements ProductInterface
 
     public function count()
     {
-        return Product::get(['id'])->count();
+        return $this->product->get(['id'])->count();
     }
 }

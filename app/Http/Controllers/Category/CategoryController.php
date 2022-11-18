@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -25,7 +26,10 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->all();
-        return view('admin.categories.index', compact('categories'));
+        $categories_count = Cache::remember('categories-count', 100, function(){
+            return $this->categoryService->count();
+        });
+        return view('admin.categories.index', compact('categories', 'categories_count'));
     }
 
     /**

@@ -37,7 +37,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         // view composer, pass data to views globally
-        View::composer('*', CountComposer::class);
+        View::composer([
+            'partials.sidebar',
+            'admin.orders.index'
+        ], CountComposer::class);
 
         // schema length default & use uuid as default mophid
         Schema::defaultStringLength(191);
