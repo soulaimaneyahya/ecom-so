@@ -26,14 +26,13 @@
         @endsorted
 
         @sorted(['name' => 'status'])
-          <option selected>Status</option>
-          <option value="asc" @if(request('status') == 'all') selected @endif>All</option>
-          <option value="asc" @if(request('status') == 'rejected') selected @endif>Rejected</option>
-          <option value="desc" @if(request('status') == 'approved') selected @endif>Approved</option>
+          <option value disabled {{ request('sort') === null ? 'selected' : '' }}>Status</option>
+          <option value="rejected" @if(request('status') == 'rejected') selected @endif>Rejected</option>
+          <option value="approved" @if(request('status') == 'approved') selected @endif>Approved</option>
         @endsorted
 
         @if (request('q') || request('status'))
-          <a class="btn btn-dark mx-2" href="{{ route('admin.products.index') }}">
+          <a class="btn btn-dark mx-2" href="{{ route('admin.reviews.index') }}">
             Clear
           </a>
         @endif

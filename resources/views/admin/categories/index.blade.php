@@ -26,9 +26,11 @@
         @endsorted
 
         @sorted(['name' => 'sort', 'timestamp' => TRUE])
-          <option selected>Sort</option>
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Category Title A-Z</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Category Title Z-A</option>
+          <option value disabled {{ request('sort') === null ? 'selected' : '' }}>Sort</option>
+          <option value="name-asc" @if(request('sort') == 'name-asc') selected @endif>Category Title A-Z</option>
+          <option value="name-desc" @if(request('sort') == 'name-desc') selected @endif>Category Title Z-A</option>
+          <option value="products_count-asc" @if(request('sort') == 'products_count-asc') selected @endif>Products Count (Highest)</option>
+          <option value="products_count-desc" @if(request('sort') == 'products_count-desc') selected @endif>Products Count (Lowest)</option>
         @endsorted
 
         @if (request('q') || request('sort'))

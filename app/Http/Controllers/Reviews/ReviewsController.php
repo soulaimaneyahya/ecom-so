@@ -28,7 +28,7 @@ class ReviewsController extends Controller
     public function index()
     {
         $reviews = $this->reviewService->all();
-        $reviews_count = Cache::remember('reviews-count', 100, function(){
+        $reviews_count = Cache::remember('reviewss-count', 100, function(){
             return $this->reviewService->count();
         });
         return view('admin.reviews.index', compact('reviews', 'reviews_count'));
@@ -64,17 +64,6 @@ class ReviewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Review $review)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Review  $review
@@ -82,7 +71,10 @@ class ReviewsController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return view('admin.reviews.edit', [
+            'review' => $review,
+            'products' => $this->products,
+        ]);
     }
 
     /**
@@ -94,7 +86,13 @@ class ReviewsController extends Controller
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
+        try {
+            $this->reviewService->update($request->validated(), $review);
+            return redirect()->route('admin.reviews.index')->with('alert-success', 'Review Updated !');
+        } catch (Exception $ex) {
+            dd($ex->getMessage());
+            return redirect()->route('admin.reviews.index')->with('alert-danger', 'Something going wrong!');
+        }
     }
 
     /**
@@ -105,6 +103,27 @@ class ReviewsController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        $this->reviewService->delete($review);
+        return redirect()->route('admin.reviews.index')->with('alert-info', 'Review Deleted !');
+    }
+
+
+    public function approved(Review $review)
+    {
+        switch ($review->status) {
+            case 'approved':
+                $review->status = "rejected";
+                $review->update();
+                return redirect()->route('admin.reviews.index')->with('alert-info', 'Review successfully rejected');
+                break;
+            case 'rejected':
+                $review->status = "approved";
+                $review->update();
+                return redirect()->route('admin.reviews.index')->with('alert-info', 'Review successfully approved');
+                break;
+            default:
+                return redirect()->back();
+                break;
+        }
     }
 }

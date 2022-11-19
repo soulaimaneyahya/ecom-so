@@ -6,7 +6,6 @@
                 <input class="form-control @error('images') is-invalid @enderror" 
                 name="images[]" wire:model="images"
                 accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="images"
-                required
                 multiple/>
                 @error('images')
                     <span class="invalid-feedback" role="alert">

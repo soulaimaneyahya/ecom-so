@@ -30,6 +30,7 @@
 
 
 <div class="d-flex justify-content-between align-items-start mb-3">
+    @if(!isset($review))
     <div class="w-full w-100 me-4">
         <label for="product_id">{{ __('Select Product') }}</label>
         <select class="form-control @error('product_id') is-invalid @enderror" name="product_id" id="product_id" required>
@@ -47,6 +48,7 @@
             </span>
         @enderror
     </div>
+    @endif
     <div class="w-full w-100">
         <label for="rating">{{ __('Rating') }}</label>
         <input id="rating" type="number" min="1" max="5" class="form-control @error('rating') is-invalid @enderror" name="rating" value="{{ old('rating', $review->rating ?? '') }}" placeholder="Product rating" autocomplete="rating" required autofocus>
@@ -60,7 +62,7 @@
 
 <div class="mb-3">
     <label for="description">{{ __('Description') }}</label>
-    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description Description .." autocomplete="description" maxlength="600" required autofocus>{{ old('description', $category->description ?? '') }}</textarea>
+    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description Description .." autocomplete="description" maxlength="600" required autofocus>{{ old('description', $review->description ?? '') }}</textarea>
     @error('description')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -68,20 +70,12 @@
     @enderror
 </div>
 
-<div class="card p-3">
-    <label for="image" class="form-label">Attache Image</label>
-    <input class="form-control @error('image') is-invalid @enderror" 
-    name="image" wire:model="image"
-    accept="image/png, image/gif, image/svg, image/jpg, image/jpeg" type="file" id="image" required/>
-    @error('image')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-
 @isset($review)
-@images(['title' => 'Review image'])
-<img src="{{ $review->image->url() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
+@images(['title' => 'Review images'])
+@foreach($review->images as $image)
+    <img src="{{ $image->url() }}" style="width:200px; height:200px; object-fit: cover;" class="img-fluid" alt="no-image">
+@endforeach
 @endimages
 @endisset
+
+@livewire('upload-images-component')

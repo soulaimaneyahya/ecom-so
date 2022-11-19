@@ -7,37 +7,52 @@ use App\Interfaces\CategoryInterface;
 
 class CategoryRepository implements CategoryInterface
 {
+    public $q;
+    public $per_page;
+    public $sort;
+
     public function __construct(
         private Category $category,
     ) {
+        $this->q = request('q');
+        $this->per_page = request('per_page') ?? 5;
+        $this->sort = request('sort');
     }
 
     public function all()
     {
-        $per_page = request('per_page') ?? 5;
-        $q = request('q');
-        $sort = request('sort');
-
         $categories = $this->category
         ->with(['image', 'subcategories', 'subcategories.image'])
         ->whereNull('parent_category_id')
         ->select(['id', 'name', 'slug', 'created_at'])
         ->withCount('products');
         
-        if ($q) {
-            $categories = $categories->where('name', 'like', '%'. $q .'%');
+        if ($this->q) {
+            $categories = $categories->where('name', 'like', '%'. $this->q .'%');
         }
-        if ($sort && in_array($sort, ["asc", "desc"])) {
-            $categories = $categories->orderBy('name', $sort);
+
+        if ($this->sort &&
+            in_array($this->sort, [
+            "name-asc", "name-desc", "products_count-asc", "products_count-desc", "created_at-asc",
+            "created_at-desc", "updated_at-asc", "updated_at-desc"
+        ])) {
+            $request = explode("-", $this->sort);
+            
+            $field = $request[0];
+            $value = $request[1];
+            
+            $categories = $categories->orderBy($field, $value);
         } else {
             $categories = $categories->latest();
         }
+
+
         return $categories
-        ->paginate($per_page) // page = 1
+        ->paginate($this->per_page) // page = 1
         ->appends([
-            'per_page' => $per_page, // &per_page=10
-            'q' => $q, // &q=lorem
-            'sort' => $sort, // &sort=desc
+            'per_page' => $this->per_page, // &per_page=10
+            'q' => $this->q, // &q=lorem
+            'sort' => $this->sort, // &sort=desc
         ]);
     }
 
@@ -51,7 +66,7 @@ class CategoryRepository implements CategoryInterface
         return $this->category->whereNull('parent_category_id')->get(['id'])->count();
     }
 
-    public function parent_categories()
+    public function parentCategories()
     {
         return $this->category->whereNull('parent_category_id')->get(['id', 'name']);
     }

@@ -26,9 +26,9 @@ class CategoryService
         return $this->categoryRepository->find($category);
     }
 
-    public function parent_categories()
+    public function parentCategories()
     {
-        return $this->categoryRepository->parent_categories();
+        return $this->categoryRepository->parentCategories();
     }
 
     public function count()

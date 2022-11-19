@@ -2,7 +2,8 @@
 
 namespace App\Interfaces;
 
-class ReviewInterface
+interface ReviewInterface
 {
-    //
+    public function all();
+    public function count();
 }

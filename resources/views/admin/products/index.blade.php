@@ -26,18 +26,18 @@
         @endsorted
 
         @sorted(['name' => 'sort', 'timestamp' => TRUE])
-          <option selected>Sort</option>
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Product Title A-Z</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Product Title Z-A</option>
+          <option value disabled {{ request('sort') === null ? 'selected' : '' }}>Sort</option>
+          <option value="name-asc" @if(request('sort') == 'name-asc') selected @endif>Product Title A-Z</option>
+          <option value="name-desc" @if(request('sort') == 'name-desc') selected @endif>Product Title Z-A</option>
 
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Price (Highest)</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Price (Lowest)</option>
+          <option value="price-asc" @if(request('sort') == 'price-asc') selected @endif>Price (Highest)</option>
+          <option value="price-desc" @if(request('sort') == 'price-desc') selected @endif>Price (Lowest)</option>
 
-          <option value="asc" @if(request('sort_price') == 'asc') selected @endif>Stock (Highest)</option>
-          <option value="desc" @if(request('sort_price') == 'desc') selected @endif>Stock (Lowest)</option>
+          <option value="stock-asc" @if(request('sort') == 'stock-asc') selected @endif>Stock (Highest)</option>
+          <option value="stock-desc" @if(request('sort') == 'stock-desc') selected @endif>Stock (Lowest)</option>
         @endsorted
 
-        @if (request('q') || request('sort_price'))
+        @if (request('q') || request('sort'))
           <a class="btn btn-dark mx-2" href="{{ route('admin.products.index') }}">
             Clear
           </a>

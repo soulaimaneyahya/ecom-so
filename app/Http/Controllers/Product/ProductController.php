@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->all();
-        $products_count = Cache::remember('products-count', 100, function(){
+        $products_count = Cache::remember('products-count', 100, function () {
             return $this->productService->count();
         });
         return view('admin.products.index', compact('products', 'products_count'));

@@ -35,8 +35,8 @@ class Review extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function image()
+    public function images()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

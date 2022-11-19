@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parent_categories = $this->categoryService->parent_categories();
+        $parent_categories = $this->categoryService->parentCategories();
         return view('admin.categories.create', compact('parent_categories'));
     }
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $parent_categories = $this->categoryService->parent_categories();
+        $parent_categories = $this->categoryService->parentCategories();
         return view('admin.categories.edit', compact('category', 'parent_categories'));
     }
 

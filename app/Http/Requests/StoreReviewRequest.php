@@ -12,7 +12,7 @@ class StoreReviewRequest extends FormRequest
 
     public function __construct()
     {
-        $this->products_ids = Product::select(['id'])->pluck('id')->toArray();
+        $this->products_ids = Product::get(['id'])->pluck('id')->toArray();
     }
 
     /**
@@ -37,7 +37,8 @@ class StoreReviewRequest extends FormRequest
             'last_name' => ['required', 'max:191'],
             'email' => ['required', 'min:5', 'max:255'],
             'description' => ['required', 'min:5','max:600'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
+            'images' => ['required'],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
             'rating' => ['required', 'integer', 'between:1,5'],
             'product_id' => ['required', Rule::in($this->products_ids)],
         ];
