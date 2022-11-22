@@ -39,7 +39,7 @@ class StoreReviewRequest extends FormRequest
             'description' => ['required', 'min:5','max:600'],
             'images' => ['required'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
-            'rating' => ['required', 'integer', 'between:1,5'],
+            'rating' => ['required', 'integer', 'between:0,5'],
             'product_id' => ['required', Rule::in($this->products_ids)],
         ];
     }

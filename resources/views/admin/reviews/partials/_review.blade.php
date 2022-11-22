@@ -3,7 +3,7 @@
         <img src="{{ count($review->images) ? $review->images[0]->url() : asset('assets/img/image-not-available.png') }}" style="width: 70px; height: 70px; object-fit: cover;" class="img-fluid" alt="{{ $review->name }}">
     </td>
     <td class="column-md">
-        {{ $review->rating }}
+        <star-rated class="fa-sm" rating="{{ $review->rating }}"></star-rated>
     </td>
     <td class="column-md">
         @livewire('status-approved', ['review' => $review])

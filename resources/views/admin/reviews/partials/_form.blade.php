@@ -28,7 +28,6 @@
     </div>
 </div>
 
-
 <div class="d-flex justify-content-between align-items-start mb-3">
     @if(!isset($review))
     <div class="w-full w-100 me-4">
@@ -51,7 +50,7 @@
     @endif
     <div class="w-full w-100">
         <label for="rating">{{ __('Rating') }}</label>
-        <input id="rating" type="number" min="1" max="5" class="form-control @error('rating') is-invalid @enderror" name="rating" value="{{ old('rating', $review->rating ?? '') }}" placeholder="Product rating" autocomplete="rating" required autofocus>
+        <review-input @error('rating') error-rating="{{ true }}" @enderror review-rating="{{ old('rating', $review->rating ?? 0) }}"></review-input>
         @error('rating')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

@@ -12,6 +12,8 @@
     <link rel="icon" href="https://pngimg.com/uploads/circle/circle_PNG36.png" type="image/png">
     <!-- CoreUI CSS -->
     <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui@3.4.0/dist/css/coreui.min.css" crossorigin="anonymous">
+    {{-- fas --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,7 +30,7 @@
     @include('partials.sidebar')    
     @endif
     @endauth
-    <div class="c-wrapper c-fixed-components">
+    <div class="c-wrapper c-fixed-components" id="app">
         @include('partials.header')
         <main class="c-main p-5 m-0">
             <div class="row justify-content-center">

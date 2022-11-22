@@ -16,6 +16,3 @@
     </div>
 </div>
 @endsection
-@section('scripts')
-@include('partials.ckeditor')
-@endsection
