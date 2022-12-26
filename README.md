@@ -48,13 +48,11 @@ php artisan migrate:fresh --seed
 ```
 ./vendor/bin/phpcs app/Http/Controllers/Product/ProductController.php --standard=PSR2
 ```
-```
 
 ## Attach product to category
 
 $product->categories()->attach($category1);
 $product->categories()->detach($category1);
-
 
 ## Contributors
 
