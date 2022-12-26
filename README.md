@@ -55,6 +55,7 @@ php artisan migrate:fresh --seed
 $product->categories()->attach($category1);
 $product->categories()->detach($category1);
 
+
 ## Contributors
 
 * **Soulaimane Yahya** (https://github.com/soulaimaneyahya)
